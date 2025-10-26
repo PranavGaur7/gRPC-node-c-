@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package greeter;
+
+
+service Greeter{
+//    simple rpc
+    rpc SayHello(HelloRequest) returns (HelloResponse) {}
+
+//    server side streaming
+    rpc ListGreetings(HelloRequest) returns (stream HelloResponse) {}
+
+//    client side streaming
+    rpc SummarizeGreetings(stream HelloRequest) returns (HelloResponse) {}
+
+//    bidirectional streaming
+    rpc Meeting(stream HelloRequest) returns (stream HelloResponse) {}
+}
+
+
+
+message HelloRequest{
+    string name=1;
+}
+
+message HelloResponse{
+    string message=1;
+}
